@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="baidu-site-verification" content="Xijgc2YO5y">
+	<meta name="baidu-site-verification" content="Qj80ZohAkr">
+	<meta name="google-site-verification" content="N-bPfRy2yUxAuOVKpn0Gm7BOygzI_faxwpAUQq0T8xw">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Leeves在 Github 上的个人博客">
+    <meta name="keyword" content="Leeves">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="Leeves" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Kotlin入门学习笔记（一）｜Leeves&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://leevsee.github.io/2017/05/19/Kotlin入门学习笔记（一）/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+	<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://cdn.pcbeta.attachment.inimc.com/data/attachment/forum/201205/15/232126llvvucjetunjn8g2.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
+" data-ishome="false">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Leeves
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/Others/">Others</a>
+                        </li>
+                        
+                    
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://7xz8pr.com1.z1.glb.clouddn.com/postPicture.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://7xz8pr.com1.z1.glb.clouddn.com/postPicture.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Kotlin入门学习笔记（一）</h1>
+                    
+                    <span class="meta">
+                         作者 Leeves
+                        <span>
+                          日期 2017-05-19
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Kotlin入门学习笔记（一）
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p><img src="http://7xz8pr.com1.z1.glb.clouddn.com/kotlin.png" alt="image">  </p>
+<p>突然间，Kotlin被宣布成为Android开发第一语言。一下子就爆炸了，什么三年干掉Java，全民Kotlin。。。</p>
+<p><img src="http://7xz8pr.com1.z1.glb.clouddn.com/mengbi.jpg" alt="image"></p>
+<p>好了，废话不多说，直接学习来入门吧：</p>
+<ul>
+<li><h2 id="包声明"><a href="#包声明" class="headerlink" title="包声明"></a>包声明</h2></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package my.demo</span><br><span class="line"></span><br><span class="line">import java.util.*</span><br></pre></td></tr></table></figure>
+<p>　包不需要与目录匹配，可以任意放在系统文件中。
+　</p>
+<ul>
+<li><h2 id="方法定义"><a href="#方法定义" class="headerlink" title="方法定义"></a>方法定义</h2>先上栗子</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fun sum(a: Int, b: Int): Int &#123;</span><br><span class="line">    return a + b</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以fun来表示函数，与js中的function有点类似哈，然后sum是方法名，里面的参数a，和定义参数类似Int都能看懂，后面跟着：Int就是返回是Int。</p>
+<p>还可以更简洁的表达式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fun sum(a: Int, b: Int) = a + b</span><br></pre></td></tr></table></figure>
+<p>方法返回一个没有意义的值，可以用Unit，也可以省略：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fun printSum(a: Int, b: Int): Unit &#123;</span><br><span class="line">    println(&quot;sum of $a and $b is $&#123;a + b&#125;&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun printSum(a: Int, b: Int) &#123;</span><br><span class="line">    println(&quot;sum of $a and $b is $&#123;a + b&#125;&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h2 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h2></li>
+</ul>
+<p>只能赋值一次（只读）的局部变量的几种声明方式：<br>使用关键字<code>val</code>表示，可以看成java的<code>static final</code>和js中的<code>const</code><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val a: Int = 1  // immediate assignment</span><br><span class="line">val b = 2   // `Int` type is inferred</span><br><span class="line">val c: Int  // Type required when no initializer is provided</span><br><span class="line">c = 3       // deferred assignment</span><br></pre></td></tr></table></figure></p>
+<p>上面栗子说明：<br>1、直接声明变量类型和值<br>2、类型可以省略，系统自动识别是Int<br>3、先声明变量，和类型，在赋值。</p>
+<h6 id="真正可变的局部变量"><a href="#真正可变的局部变量" class="headerlink" title="真正可变的局部变量"></a>真正可变的局部变量</h6><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var x = 5 // `Int` type is inferred</span><br><span class="line">x += 1</span><br><span class="line">// x = 6</span><br></pre></td></tr></table></figure>
+<p>和js都是用<code>var</code>来声明哈。但是和js又有什么不同呢，这个坑以后填，嘿嘿。</p>
+<ul>
+<li><h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2>和java、js一样也是使用<code>/ /</code>和<code>/* */</code>来注释，但是不同的是，块注释<code>/*  */</code>可以嵌套。好像没什么说，过~</li>
+</ul>
+<ul>
+<li><h2 id="使用字符串模板"><a href="#使用字符串模板" class="headerlink" title="使用字符串模板"></a>使用字符串模板</h2>简单的栗子：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fun main(args: Array&lt;String&gt;) &#123;</span><br><span class="line">    var a = 1</span><br><span class="line">    // simple name in template:</span><br><span class="line">    val s1 = &quot;a is $a&quot; </span><br><span class="line"></span><br><span class="line">    a = 2</span><br><span class="line">    // arbitrary expression in template:</span><br><span class="line">    val s2 = &quot;$&#123;s1.replace(&quot;is&quot;, &quot;was&quot;)&#125;, but now is $a&quot;</span><br><span class="line">    println(s2)</span><br><span class="line">    </span><br><span class="line">    //a was 1, but now is 2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中模板表达式由$符号开始，和一个值组成。<br>更详细的，比如运行结果是<code>a was 1, but now is 2</code>，以后会说明。</p>
+<ul>
+<li><h2 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h2></li>
+</ul>
+<p>这个基本使用和Java一样，还可以使用简洁表达式，给个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fun maxOf(a: Int, b: Int): Int &#123;</span><br><span class="line">    if (a &gt; b) &#123;</span><br><span class="line">        return a</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return b</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fun maxOf(a: Int, b: Int) = if (a &gt; b) a else b</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h2 id="使用Null值与检查Null"><a href="#使用Null值与检查Null" class="headerlink" title="使用Null值与检查Null"></a>使用Null值与检查Null</h2>特别指出如果一个值可能为空，必须显式地表示为空。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fun printProduct(arg1: String, arg2: String) &#123;</span><br><span class="line">    val x = parseInt(arg1)</span><br><span class="line">    val y = parseInt(arg2)</span><br><span class="line"></span><br><span class="line">    // Using `x * y` yields error because they may hold nulls.</span><br><span class="line">    if (x != null &amp;&amp; y != null) &#123;</span><br><span class="line">        // x and y are automatically cast to non-nullable after null check</span><br><span class="line">        println(x * y)</span><br><span class="line">    &#125;</span><br><span class="line">    else &#123;</span><br><span class="line">        println(&quot;either &apos;$arg1&apos; or &apos;$arg2&apos; is not a number&quot;)</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// ...</span><br><span class="line">if (x == null) &#123;</span><br><span class="line">    println(&quot;Wrong number format in arg1: &apos;$&#123;arg1&#125;&apos;&quot;)</span><br><span class="line">    return</span><br><span class="line">&#125;</span><br><span class="line">if (y == null) &#123;</span><br><span class="line">    println(&quot;Wrong number format in arg2: &apos;$&#123;arg2&#125;&apos;&quot;)</span><br><span class="line">    return</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// x and y are automatically cast to non-nullable after null check</span><br><span class="line">println(x * y)</span><br></pre></td></tr></table></figure>
+<p>上面栗子是传入Str，然后转成Int，但是Str不是数字，转换成Int就会是null，而不是出现像Java出现转换<code>java.lang.NumberFormatException</code>或者js出现<code>NaN</code>。</p>
+<ul>
+<li><h2 id="类型检查与自动转换"><a href="#类型检查与自动转换" class="headerlink" title="类型检查与自动转换"></a>类型检查与自动转换</h2><code>is</code>操作符会检查这个表达式是否是一个类型的实例。如果一个不可以变的常量或属性已经被检查过了，那么就先不需要显式的转换。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fun getStringLength(obj: Any): Int? &#123;</span><br><span class="line">    if (obj is String) &#123;</span><br><span class="line">        // `obj` 在if里面自动转成 `String` </span><br><span class="line">        return obj.length</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // `obj` 是`Any`类型返回null</span><br><span class="line">    return null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fun getStringLength(obj: Any): Int? &#123;</span><br><span class="line">    if (obj !is String) return null</span><br><span class="line"></span><br><span class="line">    // `obj` 在if外面自动转成 `String`</span><br><span class="line">    return obj.length</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>or even</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fun getStringLength(obj: Any): Int? &#123;</span><br><span class="line">    //`obj` 在&amp;&amp;右变自动转成 `String`</span><br><span class="line">    if (obj is String &amp;&amp; obj.length &gt; 0) &#123;</span><br><span class="line">        return obj.length</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return null</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h2 id="使用for循环"><a href="#使用for循环" class="headerlink" title="使用for循环"></a>使用for循环</h2>这个类似Java的for each，但是对于js和Python来说肯定很熟悉了</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val items = listOf(&quot;apple&quot;, &quot;banana&quot;, &quot;kiwi&quot;)</span><br><span class="line">for (item in items) &#123;</span><br><span class="line">    println(item)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val items = listOf(&quot;apple&quot;, &quot;banana&quot;, &quot;kiwi&quot;)</span><br><span class="line">for (index in items.indices) &#123;</span><br><span class="line">    println(&quot;item at $index is $&#123;items[index]&#125;&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面栗子说明：<br>第二个栗子中：<code>indices</code>表示前面的<code>index</code>是items的下标0,1,2…  </p>
+<ul>
+<li><h2 id="使用while循环"><a href="#使用while循环" class="headerlink" title="使用while循环"></a>使用while循环</h2><p><code>while</code>使用和其他没什么区别</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val items = listOf(&quot;apple&quot;, &quot;banana&quot;, &quot;kiwi&quot;)</span><br><span class="line">var index = 0</span><br><span class="line">while (index &lt; items.size) &#123;</span><br><span class="line">    println(&quot;item at $index is $&#123;items[index]&#125;&quot;)</span><br><span class="line">    index++</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><h2 id="使用when表达式"><a href="#使用when表达式" class="headerlink" title="使用when表达式"></a>使用when表达式</h2><p>哈哈看到这里是不是瞬间懵逼了，里面的lambda表达式<code>-&gt;</code>先不用看，就单单when使用也一样</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">fun describe(obj: Any): String =</span><br><span class="line">when (obj) &#123;</span><br><span class="line">    1          -&gt; &quot;One&quot;</span><br><span class="line">    &quot;Hello&quot;    -&gt; &quot;Greeting&quot;</span><br><span class="line">    is Long    -&gt; &quot;Long&quot;</span><br><span class="line">    !is String -&gt; &quot;Not a string&quot;</span><br><span class="line">    else       -&gt; &quot;Unknown&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面栗子：<code>describe</code>是一个<code>function</code>当传入<code>1</code>，返回<code>One</code>，依次类推。</p>
+<ul>
+<li><h2 id="范围"><a href="#范围" class="headerlink" title="范围"></a>范围</h2><code>in</code>操作符，检测一个数字是否在某个范围里</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val x = 10</span><br><span class="line">val y = 9</span><br><span class="line">if (x in 1..y+1) &#123;</span><br><span class="line">    println(&quot;fits in range&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以使用<code>!</code>取反</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val list = listOf(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)</span><br><span class="line"></span><br><span class="line">if (-1 !in 0..list.lastIndex) &#123;</span><br><span class="line">    println(&quot;-1 is out of range&quot;)</span><br><span class="line">&#125;</span><br><span class="line">if (list.size !in list.indices) &#123;</span><br><span class="line">    println(&quot;list size is out of valid list indices range too&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//-1 is out of range</span><br><span class="line">//list size is out of valid list indices range too</span><br></pre></td></tr></table></figure>
+<p>和for循环配合：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (x in 1..5) &#123;</span><br><span class="line">    print(x)</span><br><span class="line">&#125;</span><br><span class="line">//12345</span><br></pre></td></tr></table></figure>
+<p>其中<code>..</code>表示从小到大，<code>1..10</code>，表示范围1到10。那么如果从大到小呢，那就是使用<code>downTo</code>，比如：<code>9 downTo 0</code>，表示从9到0。还可以使用<code>setp</code>，类似每次循环+几或者-几，是+或者-，看是<code>..</code>还是<code>downTo</code>。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (x in 1..10 step 2) &#123;</span><br><span class="line">    print(x)</span><br><span class="line">&#125;</span><br><span class="line">//13579</span><br><span class="line"></span><br><span class="line">for (x in 9 downTo 0 step 3) &#123;</span><br><span class="line">    print(x)</span><br><span class="line">&#125;</span><br><span class="line">//9630</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2>前面也有是用过，但是关于集合的定义不做过多详细介绍，简单介绍怎么使用：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val items = listOf(&quot;apple&quot;, &quot;banana&quot;, &quot;kiwi&quot;)</span><br><span class="line">for (item in items) &#123;</span><br><span class="line">    println(item)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用in操作符，判断集合是否包含某个<code>object</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val items = setOf(&quot;apple&quot;, &quot;banana&quot;, &quot;kiwi&quot;)</span><br><span class="line">when &#123;</span><br><span class="line">    &quot;orange&quot; in items -&gt; println(&quot;juicy&quot;)</span><br><span class="line">    &quot;apple&quot; in items -&gt; println(&quot;apple is fine too&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用lambda表达式来filter（过滤）和map（类似js中的map函数）集合：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">val fruits = listOf(&quot;banana&quot;, &quot;avocado&quot;, &quot;apple&quot;, &quot;kiwi&quot;)</span><br><span class="line">fruits</span><br><span class="line">.filter &#123; it.startsWith(&quot;a&quot;) &#125;  //过滤以a开头</span><br><span class="line">.sortedBy &#123; it &#125;                //默认acs排序</span><br><span class="line">.map &#123; it.toUpperCase() &#125;       //转换成大写</span><br><span class="line">.forEach &#123; println(it) &#125;        //迭代输出</span><br><span class="line"></span><br><span class="line">//APPLE</span><br><span class="line">//AVOCADO</span><br></pre></td></tr></table></figure>
+<p>以上就是Kotlin的基础语法介绍与简单使用。<br>我相信看完了，肯定有更多的疑问。。。期待更多的更新，估计是下一周了<br>　　　　　　　　　　　　　　　　　　　　　　　　　　　　 ——by Leeves</p>
+
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share" style="text-align: right" data-thread-key="2017/05/19/Kotlin入门学习笔记（一）/" data-title="Kotlin入门学习笔记（一）" data-url="https://leevsee.github.io/2017/05/19/Kotlin入门学习笔记（一）/" data-images="" data-content="  
+突然间，Kotlin被宣布成为Android开发第一语言。一下子就爆炸了，什么三年干掉J... | Leeves&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2018/07/18/spring-boot-web-service之ws（一）/" data-toggle="tooltip" data-placement="top" title="spring-boot-web-service之ws（一）">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/03/07/Hexo+Github 快速搭建及出现的问题(二)/" data-toggle="tooltip" data-placement="top" title="Hexo+Github 快速搭建及出现的问题(二)">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread" data-thread-key="2017/05/19/Kotlin入门学习笔记（一）/" data-title="Kotlin入门学习笔记（一）" data-url="https://leevsee.github.io/2017/05/19/Kotlin入门学习笔记（一）/">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#包声明"><span class="toc-text">包声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法定义"><span class="toc-text">方法定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#局部变量"><span class="toc-text">局部变量</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#真正可变的局部变量"><span class="toc-text">真正可变的局部变量</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#注释"><span class="toc-text">注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用字符串模板"><span class="toc-text">使用字符串模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#条件语句"><span class="toc-text">条件语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Null值与检查Null"><span class="toc-text">使用Null值与检查Null</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型检查与自动转换"><span class="toc-text">类型检查与自动转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用for循环"><span class="toc-text">使用for循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用while循环"><span class="toc-text">使用while循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用when表达式"><span class="toc-text">使用when表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#范围"><span class="toc-text">范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集合"><span class="toc-text">集合</span></a></li>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://leevsee.github.io/#">lixin</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'leeves';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/lxsweety">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/lxsweety">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Leevsee">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Leeves 2019
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="http://kaijun.rocks/hexo-theme-huxblog/" style=" color:#666; font-size:8px;">Kaijun</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://leevsee.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://7xz8pr.com1.z1.glb.clouddn.com/icon1.jpg">
+</body>
+
+</html>

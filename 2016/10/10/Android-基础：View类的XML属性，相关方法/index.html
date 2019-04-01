@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="baidu-site-verification" content="Xijgc2YO5y">
+	<meta name="baidu-site-verification" content="Qj80ZohAkr">
+	<meta name="google-site-verification" content="N-bPfRy2yUxAuOVKpn0Gm7BOygzI_faxwpAUQq0T8xw">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Leeves在 Github 上的个人博客">
+    <meta name="keyword" content="Leeves">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="Leeves" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        Android 基础：View类的XML属性，相关方法｜Leeves&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://leevsee.github.io/2016/10/10/Android-基础：View类的XML属性，相关方法/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/blog-style.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+	<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+</head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://cdn.pcbeta.attachment.inimc.com/data/attachment/forum/201205/15/232126llvvucjetunjn8g2.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
+" data-ishome="false">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    Leeves
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+                        
+                    
+                        
+                        <li>
+                            <a href="/Others/">Others</a>
+                        </li>
+                        
+                    
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img" src="http://7xz8pr.com1.z1.glb.clouddn.com/postPicture.jpg">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://7xz8pr.com1.z1.glb.clouddn.com/postPicture.jpg')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>Android 基础：View类的XML属性，相关方法</h1>
+                    
+                    <span class="meta">
+                         作者 Leeves
+                        <span>
+                          日期 2016-10-10
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            Android 基础：View类的XML属性，相关方法
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>记录起来，以后用到就好找<br><br></p>
+<table>
+<thead>
+<tr>
+<th>XML属性</th>
+<th>相关方法</th>
+<th>说明 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>android:alpha</td>
+<td>setAlpha(float)</td>
+<td>设置该组件的透明度</td>
+</tr>
+<tr>
+<td>android:background</td>
+<td>setBackgroundResource<br>(int)</td>
+<td>设置该组件的背景颜色</td>
+</tr>
+<tr>
+<td>android:clickable</td>
+<td>setClickable(boolean)</td>
+<td>设置该组件是否可以激发单击事件</td>
+</tr>
+<tr>
+<td>android:contentDesc<br>ription</td>
+<td>setContentDescription<br>(CharSequence)</td>
+<td>设置该组件的主要描述信息</td>
+</tr>
+<tr>
+<td>android:drawingCach<br>eQuality</td>
+<td>setDrawingCacheQuality<br>(iint)</td>
+<td>设置该组件所使用的绘制缓存的质量</td>
+</tr>
+<tr>
+<td>android:elevation</td>
+<td>setElevation(float)</td>
+<td>设置改组件“浮”起来的高度，通过设置该属性可让改组件呈现3D效果</td>
+</tr>
+<tr>
+<td>android:fadeScroll<br>bars</td>
+<td>setScrollbarFading<br>Enabled(boolean)</td>
+<td>当不使用该组件的滚动条时，是否淡出显示滚动条</td>
+</tr>
+<tr>
+<td>android:fadingEdge</td>
+<td>setVerticalFadingEdge<br>Enabled(boolean)</td>
+<td>设置滚动该组件时组件边界是否使用淡出效果</td>
+</tr>
+<tr>
+<td>android:fadingEdge<br>Length</td>
+<td>getVerticalFading<br>EdgeLength()</td>
+<td>设置淡出边界的长度</td>
+</tr>
+<tr>
+<td>android:focusable</td>
+<td>setFocusable(boolean)</td>
+<td>设置组件是否可以得到焦点</td>
+</tr>
+<tr>
+<td>android:focusableIn<br>TouchMode</td>
+<td>setFocusableInTouchMode<br>(boolean)</td>
+<td>设置该组件在触摸模式下是否可以得到焦点</td>
+</tr>
+<tr>
+<td>android:id</td>
+<td>setId(int)</td>
+<td>设置该组件的唯一标识。在Java 代码中可以通过 findViewById 来获取它</td>
+</tr>
+<tr>
+<td>android:isScrollCo<br>ntainer</td>
+<td>setScrollContainer(boolean)</td>
+<td>设置该组件是否作为可滚动容器使用</td>
+</tr>
+<tr>
+<td>android:keepScreenOn</td>
+<td>setKeepScreenOn(boolean)</td>
+<td>设置该组件是否会强制手机屏幕一直打开</td>
+</tr>
+<tr>
+<td>android:longClickable</td>
+<td>setLongClickable(boolean)</td>
+<td>设置该组件是否可以响应长单击事件</td>
+</tr>
+<tr>
+<td>android:minHeight</td>
+<td>setMinimumHeight(int)</td>
+<td>设置该组件的最小高度</td>
+</tr>
+<tr>
+<td>android:minWidth</td>
+<td>setMinimumWidtht(int)</td>
+<td>设置该组件的最小宽度</td>
+</tr>
+<tr>
+<td>android:nextFocusDown</td>
+<td>SetNextFocusDownId(int)</td>
+<td>设置焦点在该组件上，且按向下键时获得焦点的组件 ID</td>
+</tr>
+<tr>
+<td>android:nextFocusLeft</td>
+<td>setNextFocusLeftId(int)</td>
+<td>设置焦点在该组件上，且按向左键时获得焦点的组件 ID</td>
+</tr>
+<tr>
+<td>android:nextFocusRig<br>ht</td>
+<td>setNextFocusRightId(int)</td>
+<td>设置焦点在该组件上，且按向右键时获得焦点的组件 ID</td>
+</tr>
+<tr>
+<td>android:nextFocusUp</td>
+<td>setNextFocusUpId(int)</td>
+<td>设置焦点在该组件上，且按向上键时获得焦点的组件 ID</td>
+</tr>
+<tr>
+<td>android:onClick</td>
+<td></td>
+<td>为该组件的单击事件绑定监听器</td>
+</tr>
+<tr>
+<td>android:padding</td>
+<td>setPadding(int,int,int,int)</td>
+<td>在组件的四边设置填充区域</td>
+</tr>
+<tr>
+<td>android:paddingLeft</td>
+<td>setPadding(int,int,int,int)</td>
+<td>在组件的左边设置填充区域</td>
+</tr>
+<tr>
+<td>android:paddingTop</td>
+<td>setPadding(int,int,int,int)</td>
+<td>在组件的上边设置填充区域</td>
+</tr>
+<tr>
+<td>android:paddingRight</td>
+<td>setPadding(int,int,int,int)</td>
+<td>在组件的右边设置填充区域</td>
+</tr>
+<tr>
+<td>android:paddingBottom</td>
+<td>setPadding(int,int,int,int)</td>
+<td>在组件的下边设置填充区域</td>
+</tr>
+<tr>
+<td>android:rotation</td>
+<td>setRotation(float)</td>
+<td>设置该组件旋转的角度</td>
+</tr>
+<tr>
+<td>android:rotationX</td>
+<td>setRotationX(float)</td>
+<td>设置该组件绕X 轴旋转的角度</td>
+</tr>
+<tr>
+<td>android:rotationY</td>
+<td>setRotationY(float)</td>
+<td>设置该组件绕Y 轴旋转的角度</td>
+</tr>
+<tr>
+<td>android:saveEnabled</td>
+<td>setSaveEnabled(boolean)</td>
+<td>如果设置为false ，那当该组件被冻结时不会保存它的状态</td>
+</tr>
+<tr>
+<td>android:scaleX</td>
+<td>setScaleX(float)</td>
+<td>设置该组件在水平方向的缩放比</td>
+</tr>
+<tr>
+<td>android:scaleY</td>
+<td>setScaleY(float)</td>
+<td>设置该组件在垂直方向的缩放比</td>
+</tr>
+<tr>
+<td>android:scrollX</td>
+<td></td>
+<td>该组件初始化后的水平滚动偏移</td>
+</tr>
+<tr>
+<td>android:scrollY</td>
+<td></td>
+<td>该组件初始化后的垂直滚动偏移</td>
+</tr>
+<tr>
+<td>android:scrollbarAl<br>waysDrawHorizontalTrack</td>
+<td></td>
+<td>设置该组件是否总是显示水平滚动条的轨迹</td>
+</tr>
+<tr>
+<td>android:scrollbarAl<br>waysDrawVerticalTrack</td>
+<td></td>
+<td>设置该组件是否总是显示垂直滚动条的轨迹</td>
+</tr>
+<tr>
+<td>android:scrollbarDe<br>faultDelayBeforeFade</td>
+<td>setScrollbarDefault<br>DelayBeforeFade(int)</td>
+<td>设置滚动条在淡出隐藏之前延迟多少毫秒</td>
+</tr>
+<tr>
+<td>android:scrollbarFa<br>deDuration</td>
+<td>setScrollbarFade<br>Duration(int)</td>
+<td>设置滚动条淡出隐藏过程需要多少秒</td>
+</tr>
+<tr>
+<td>android:scrollbarSize</td>
+<td>setScrollbarSize(int)</td>
+<td>设置垂直滚动条的宽度和水平滚动条的高度</td>
+</tr>
+<tr>
+<td>android:scrollbarStyle</td>
+<td>setScrollbarStyle(int)</td>
+<td>设置滚动条的风格和位置。该属性支持如下属性：insideOverlay<br>insideInset<br>OutsideOverlay<br>OutsideInset</td>
+</tr>
+<tr>
+<td>android:scrollbarThu<br>mbHorizontal</td>
+<td></td>
+<td>设置该组件的水平滚动条的滑块对应的 Drawable 对象</td>
+</tr>
+<tr>
+<td>android:scrollbarThum<br>bVertical</td>
+<td></td>
+<td>设置该组件的垂直滚动条的滑块对应的 Drawable 对象</td>
+</tr>
+<tr>
+<td>android:scrollbarTrac<br>kHorizontal</td>
+<td></td>
+<td>设置该组件的水平滚动条的轨道对应的 Drawable 对象</td>
+</tr>
+<tr>
+<td>android:scrollbarTrac<br>kVertical</td>
+<td></td>
+<td>设置该组件的垂直滚动条的轨道对应的 Drawable 对象</td>
+</tr>
+<tr>
+<td>android:scrollbars</td>
+<td></td>
+<td>定义该组件滚动时显示几个滚动条，该属性支持如下属性值。<br>none ：不显示滚动条<br>horizont ：显示水平滚动条<br>vertical ：显示垂直滚动条</td>
+</tr>
+<tr>
+<td>android:soundEffects<br>Enabled</td>
+<td>setSoundEffects<br>Enabled(boolean)</td>
+<td>设置该组件被单击时是否使用音效</td>
+</tr>
+<tr>
+<td>android:tag</td>
+<td></td>
+<td>为该组件设置一个字符串类型的tag 值。接下来可通过 View 的 getTag() 获取该字符串，或通过 findViewWithTag() 查找该组件</td>
+</tr>
+<tr>
+<td>android:transformPivotX</td>
+<td>setPivotX(float)</td>
+<td>设置该组件旋转时旋转中心的 X 坐标</td>
+</tr>
+<tr>
+<td>android:transformPivotY</td>
+<td>setPivotY(float)</td>
+<td>设置该组件旋转时旋转中心的 Y 坐标</td>
+</tr>
+<tr>
+<td>android:translationX</td>
+<td>setTranslationX(float)</td>
+<td>设置该组件在X 方向上位移</td>
+</tr>
+<tr>
+<td>android:translationY</td>
+<td>setTranslationY(float)</td>
+<td>设置该组件在Y 方向上位移</td>
+</tr>
+<tr>
+<td>android:visibility</td>
+<td>setVisibility(int)</td>
+<td>设置该组件是否可见</td>
+</tr>
+</tbody>
+</table>
+
+                <hr>
+                
+                <!-- 多说 Share start -->
+                <div class="ds-share" style="text-align: right" data-thread-key="2016/10/10/Android-基础：View类的XML属性，相关方法/" data-title="Android 基础：View类的XML属性，相关方法" data-url="https://leevsee.github.io/2016/10/10/Android-基础：View类的XML属性，相关方法/" data-images="" data-content="记录起来，以后用到就好找
+
+
+
+XML属性
+相关方法
+说明 
+
+
+
+
+android:alph... | Leeves&#39;s blog ">
+                    <div class="ds-share-inline">
+                        <ul class="ds-share-icons-16">
+                            <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                            <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                            <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                            <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                        </ul>
+                        <div class="ds-share-icons-more">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2016/11/02/Genymotion-镜像-6-0-root权限问题/" data-toggle="tooltip" data-placement="top" title="Genymotion 镜像 6.0 root权限问题">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2016/10/03/Android-demo-下载进度条闪光效果（自定义View）—-by-LineChen/" data-toggle="tooltip" data-placement="top" title="Android demo:下载进度条闪光效果（自定义View）—(by LineChen)">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread" data-thread-key="2016/10/10/Android-基础：View类的XML属性，相关方法/" data-title="Android 基础：View类的XML属性，相关方法" data-url="https://leevsee.github.io/2016/10/10/Android-基础：View类的XML属性，相关方法/">
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://leevsee.github.io/#">lixin</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'leeves';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user};
+    (function () {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/lxsweety">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/lxsweety">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Leevsee">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Leeves 2019
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                    Theme by <a href="http://kaijun.rocks/hexo-theme-huxblog/" style=" color:#666; font-size:8px;">Kaijun</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/blog.js"></script>
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://leevsee.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','null','2.0.0');
+</script>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://7xz8pr.com1.z1.glb.clouddn.com/icon1.jpg">
+</body>
+
+</html>
