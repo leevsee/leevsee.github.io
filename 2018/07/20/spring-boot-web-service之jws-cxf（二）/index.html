@@ -2,7 +2,7 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="baidu-site-verification" content="Xijgc2YO5y">
@@ -60,8 +60,8 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
-" data-ishome="false">
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -143,13 +143,14 @@
 <!--only post-->
 
 
-<img class="wechat-title-img" src="http://7xz8pr.com1.z1.glb.clouddn.com/postPicture.jpg">
+<img class="wechat-title-img"
+     src="http://lixin.piaozu.com.cn/postPicture.jpg">
 
 
 <style>
     
     header.intro-header {
-        background-image: url('http://7xz8pr.com1.z1.glb.clouddn.com/postPicture.jpg')
+        background-image: url('http://lixin.piaozu.com.cn/postPicture.jpg')
     }
 
     
@@ -193,9 +194,9 @@
 <h2 id="2-创建webservice接口和实现类"><a href="#2-创建webservice接口和实现类" class="headerlink" title="2.创建webservice接口和实现类"></a>2.创建webservice接口和实现类</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@WebService</span><br><span class="line">public interface LeevesService &#123;</span><br><span class="line"></span><br><span class="line">    @WebMethod</span><br><span class="line">    String leevesService(String reqMsg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Slf4j</span><br><span class="line">@WebService(targetNamespace = &quot;http://webservice.wsjwsnewdemo.leeves.com/&quot;, endpointInterface = &quot;com.leeves.wsjwsnewdemo.webservice.LeevesService&quot;)</span><br><span class="line">public class LeevesServiceImpl implements LeevesService &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String leevesService(String reqMsg) &#123;</span><br><span class="line">        log.info(&quot;---jws leevesService reqMsg---:&quot; + reqMsg);</span><br><span class="line">        return &quot;---jws leevesService resMsg---:&quot; + reqMsg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="3-配置cxf"><a href="#3-配置cxf" class="headerlink" title="3.配置cxf"></a>3.配置cxf</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class CXFCofnig &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public ServletRegistrationBean&lt;CXFServlet&gt; cxfDispatcherServlet() &#123;</span><br><span class="line">        return new ServletRegistrationBean&lt;&gt;(new CXFServlet(), &quot;/jws/*&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean(name = Bus.DEFAULT_BUS_ID)</span><br><span class="line">    public SpringBus springBus() &#123;</span><br><span class="line">        return new SpringBus();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public Endpoint endpoint() &#123;</span><br><span class="line">        EndpointImpl endpoint = new EndpointImpl(springBus(), new LeevesServiceImpl());</span><br><span class="line">        endpoint.publish(&quot;/leevesService&quot;);</span><br><span class="line">        return endpoint;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后。。。就完了，是不是很简单！！！比spring ws简单多了。<br>这个是wsdl页面：<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/jws_leevesService.png" alt="enter description here"></p>
+<p>然后。。。就完了，是不是很简单！！！比spring ws简单多了。<br>这个是wsdl页面：<br><img src="http://lixin.piaozu.com.cn/jws_leevesService.png" alt="enter description here"></p>
 <ul>
-<li><h2 id="使用soapui测试"><a href="#使用soapui测试" class="headerlink" title="使用soapui测试"></a>使用soapui测试</h2><img src="http://7xz8pr.com1.z1.glb.clouddn.com/jws_soapui.png" alt="enter description here"></li>
+<li><h2 id="使用soapui测试"><a href="#使用soapui测试" class="headerlink" title="使用soapui测试"></a>使用soapui测试</h2><img src="http://lixin.piaozu.com.cn/jws_soapui.png" alt="enter description here"></li>
 </ul>
 <hr>
 <hr>
@@ -207,7 +208,13 @@
                 <hr>
                 
                 <!-- 多说 Share start -->
-                <div class="ds-share" style="text-align: right" data-thread-key="2018/07/20/spring-boot-web-service之jws-cxf（二）/" data-title="spring-boot-web-service之jws+cxf（二）" data-url="https://leevsee.github.io/2018/07/20/spring-boot-web-service之jws-cxf（二）/" data-images="" data-content="今天来点简单的，使用javax.jws+cxf来发布web service。之前因为sprin... | Leeves&#39;s blog ">
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2018/07/20/spring-boot-web-service之jws-cxf（二）/"
+                     data-title="spring-boot-web-service之jws+cxf（二）"
+                     data-url="https://leevsee.github.io/2018/07/20/spring-boot-web-service之jws-cxf（二）/"
+                     data-images=""
+                     data-content="今天来点简单的，使用javax.jws+cxf来发布web service。之前因为sprin... | Leeves&#39;s blog ">
                     <div class="ds-share-inline">
                         <ul class="ds-share-icons-16">
                             <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -226,12 +233,14 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2018/07/22/spring-boot-web-service之client（三）/" data-toggle="tooltip" data-placement="top" title="spring boot web service之client（三）">&larr; Previous Post</a>
+                        <a href="/2018/07/22/spring-boot-web-service之client（三）/" data-toggle="tooltip" data-placement="top"
+                           title="spring boot web service之client（三）">&larr; Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2018/07/18/spring-boot-web-service之ws（一）/" data-toggle="tooltip" data-placement="top" title="spring-boot-web-service之ws（一）">Next Post &rarr;</a>
+                        <a href="/2018/07/18/spring-boot-web-service之ws（一）/" data-toggle="tooltip" data-placement="top"
+                           title="spring-boot-web-service之ws（一）">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -239,7 +248,10 @@
                 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="2018/07/20/spring-boot-web-service之jws-cxf（二）/" data-title="spring-boot-web-service之jws+cxf（二）" data-url="https://leevsee.github.io/2018/07/20/spring-boot-web-service之jws-cxf（二）/">
+                    <div class="ds-thread"
+                         data-thread-key="2018/07/20/spring-boot-web-service之jws-cxf（二）/"
+                         data-title="spring-boot-web-service之jws+cxf（二）"
+                         data-url="https://leevsee.github.io/2018/07/20/spring-boot-web-service之jws-cxf（二）/">
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -354,7 +366,7 @@
 
                 
                     <li>
-                        <a target="_blank" href="https://github.com/Leevsee">
+                        <a target="_blank"  href="https://github.com/Leevsee">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -442,7 +454,7 @@
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <!--wechat title img-->
-<img class="wechat-title-img" src="http://7xz8pr.com1.z1.glb.clouddn.com/icon1.jpg">
+<img class="wechat-title-img" src="http://lixin.piaozu.com.cn/icon1.jpg">
 </body>
 
 </html>

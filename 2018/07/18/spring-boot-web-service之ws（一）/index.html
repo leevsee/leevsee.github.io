@@ -2,7 +2,7 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="baidu-site-verification" content="Xijgc2YO5y">
@@ -60,8 +60,8 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
-" data-ishome="false">
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -143,13 +143,14 @@
 <!--only post-->
 
 
-<img class="wechat-title-img" src="http://7xz8pr.com1.z1.glb.clouddn.com/postPicture.jpg">
+<img class="wechat-title-img"
+     src="http://lixin.piaozu.com.cn/postPicture.jpg">
 
 
 <style>
     
     header.intro-header {
-        background-image: url('http://7xz8pr.com1.z1.glb.clouddn.com/postPicture.jpg')
+        background-image: url('http://lixin.piaozu.com.cn/postPicture.jpg')
     }
 
     
@@ -192,23 +193,23 @@
 <h2 id="1-添加依赖"><a href="#1-添加依赖" class="headerlink" title="1.添加依赖"></a>1.添加依赖</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-boot-starter-web-services&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;wsdl4j&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;wsdl4j&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="2-创建XML-Schema文件"><a href="#2-创建XML-Schema文件" class="headerlink" title="2.创建XML Schema文件"></a>2.创建XML Schema文件</h2><p>用于生成wsdl</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;xs:schema xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:tns=&quot;http://webservice.leeves.com/ws&quot;</span><br><span class="line">           targetNamespace=&quot;http://webservice.leeves.com/ws&quot; elementFormDefault=&quot;qualified&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;xs:element name=&quot;leevesServiceRequest&quot;&gt;</span><br><span class="line">        &lt;xs:complexType&gt;</span><br><span class="line">            &lt;xs:sequence&gt;</span><br><span class="line">                &lt;xs:element name=&quot;reqMsg&quot; type=&quot;xs:string&quot;/&gt;</span><br><span class="line">            &lt;/xs:sequence&gt;</span><br><span class="line">        &lt;/xs:complexType&gt;</span><br><span class="line">    &lt;/xs:element&gt;</span><br><span class="line"></span><br><span class="line">    &lt;xs:element name=&quot;leevesServiceResponse&quot;&gt;</span><br><span class="line">        &lt;xs:complexType&gt;</span><br><span class="line">            &lt;xs:sequence&gt;</span><br><span class="line">                &lt;xs:element name=&quot;resMsg&quot; type=&quot;xs:string&quot;/&gt;</span><br><span class="line">            &lt;/xs:sequence&gt;</span><br><span class="line">        &lt;/xs:complexType&gt;</span><br><span class="line">    &lt;/xs:element&gt;</span><br><span class="line"></span><br><span class="line">&lt;/xs:schema&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="3-创建配置类"><a href="#3-创建配置类" class="headerlink" title="3.创建配置类"></a>3.创建配置类</h2><p>生成接收返回Request和Response类<br>我是使用idea，选中Schema右键生产<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/wsservicejaxb.png" alt="enter description here"><br>具体类如下：<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/wsserviceleevesService.png" alt="enter description here"></p>
+<h2 id="3-创建配置类"><a href="#3-创建配置类" class="headerlink" title="3.创建配置类"></a>3.创建配置类</h2><p>生成接收返回Request和Response类<br>我是使用idea，选中Schema右键生产<br><img src="http://lixin.piaozu.com.cn/wsservicejaxb.png" alt="enter description here"><br>具体类如下：<br><img src="http://lixin.piaozu.com.cn/wsserviceleevesService.png" alt="enter description here"></p>
 <h2 id="4-创建配置类"><a href="#4-创建配置类" class="headerlink" title="4.创建配置类"></a>4.创建配置类</h2><p>获取XsdSchema实例，并转换成wsdl</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">@EnableWs</span><br><span class="line">@Configuration</span><br><span class="line">public class WebServiceConfig extends WsConfigurerAdapter &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 把XSD schemas转换成wsdl</span><br><span class="line">     */</span><br><span class="line">    @Bean(name = &quot;leevesService&quot;)</span><br><span class="line">    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema leevesServiceSchema) &#123;</span><br><span class="line">        DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();</span><br><span class="line">        wsdl11Definition.setPortTypeName(&quot;LeevesService&quot;);</span><br><span class="line">        wsdl11Definition.setLocationUri(&quot;/ws&quot;);</span><br><span class="line">        wsdl11Definition.setTargetNamespace(&quot;http://webservice.leeves.com/ws&quot;);</span><br><span class="line">        wsdl11Definition.setSchema(leevesServiceSchema);</span><br><span class="line">        return wsdl11Definition;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 创建leeves的XsdSchema实例</span><br><span class="line">     */</span><br><span class="line">    @Bean</span><br><span class="line">    public XsdSchema leevesServiceSchema() &#123;</span><br><span class="line">        return new SimpleXsdSchema(new ClassPathResource(&quot;schema/leevesService.xsd&quot;));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="5-发布webservice端口"><a href="#5-发布webservice端口" class="headerlink" title="5.发布webservice端口"></a>5.发布webservice端口</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">@Endpoint</span><br><span class="line">public class WebServiceEndpoint &#123;</span><br><span class="line"></span><br><span class="line">    private static final String NAMESPACE_URI = &quot;http://webservice.leeves.com/ws&quot;;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 处理web service请求</span><br><span class="line">     * 其中localPart是input的节点</span><br><span class="line">     */</span><br><span class="line">    @PayloadRoot(namespace = NAMESPACE_URI, localPart = &quot;leevesServiceRequest&quot;)</span><br><span class="line">    @ResponsePayload</span><br><span class="line">    public LeevesServiceResponse getReqMsg(@RequestPayload LeevesServiceRequest leevesServiceRequest) &#123;</span><br><span class="line">        String reqMsg = leevesServiceRequest.getReqMsg();</span><br><span class="line">        System.out.println(&quot;----LeevesService服务端接收到----：&quot; + reqMsg);</span><br><span class="line">        LeevesServiceResponse leevesServiceResponse = new LeevesServiceResponse();</span><br><span class="line">        leevesServiceResponse.setResMsg(&quot;LeevesService服务端收到：&quot; + reqMsg + &quot;！向客户端发送数据：我是LeevesService&quot;);</span><br><span class="line">        return leevesServiceResponse;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><h2 id="使用soapui测试"><a href="#使用soapui测试" class="headerlink" title="使用soapui测试"></a>使用soapui测试</h2></li>
 </ul>
-<p>添加soap地址：<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/wsservicesoapui.png" alt="enter description here"></p>
-<p>发起请求：<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/wsservicesoapui_leeves.png" alt="enter description here"></p>
-<p>后台：<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/wsserviceleevesService%E6%8E%A5%E5%8F%97.png" alt="enter description here"></p>
+<p>添加soap地址：<br><img src="http://lixin.piaozu.com.cn/wsservicesoapui.png" alt="enter description here"></p>
+<p>发起请求：<br><img src="http://lixin.piaozu.com.cn/wsservicesoapui_leeves.png" alt="enter description here"></p>
+<p>后台：<br><img src="http://lixin.piaozu.com.cn/wsserviceleevesService%E6%8E%A5%E5%8F%97.png" alt="enter description here"></p>
 <hr>
 <hr>
 <hr>
-<p>以上就是正常的一个使用spring ws创建服务端的例子。在spring ws中入参和出参均以Request和Response结尾。<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/wsserviceleevesService_xsd.png" alt="enter description here"></p>
+<p>以上就是正常的一个使用spring ws创建服务端的例子。在spring ws中入参和出参均以Request和Response结尾。<br><img src="http://lixin.piaozu.com.cn/wsserviceleevesService_xsd.png" alt="enter description here"></p>
 <p>那么问题来了，有些webservice的不以Request和Response结尾。肿么办？？？？  </p>
 <p>这时候你就需要自定义wsdl了。</p>
-<p>下面我们先看看最终效果：<br>这是上面的做的leeveSerivce：<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/wsserviceleevesService_wsdl.png" alt="enter description here"><br>这是不以Request结尾的testSerice：<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/wsservicetestService_wsdl.png" alt="enter description here"></p>
+<p>下面我们先看看最终效果：<br>这是上面的做的leeveSerivce：<br><img src="http://lixin.piaozu.com.cn/wsserviceleevesService_wsdl.png" alt="enter description here"><br>这是不以Request结尾的testSerice：<br><img src="http://lixin.piaozu.com.cn/wsservicetestService_wsdl.png" alt="enter description here"></p>
 <p>那么怎么要来做呢？</p>
 <h2 id="1-重写MessagesProvider和PortTypesProvider"><a href="#1-重写MessagesProvider和PortTypesProvider" class="headerlink" title="1.重写MessagesProvider和PortTypesProvider"></a>1.重写MessagesProvider和PortTypesProvider</h2><p>下面是需要修改的地方</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">public class MySuffixBasedMessagesProvider extends DefaultMessagesProvider &#123;</span><br><span class="line"></span><br><span class="line">	//其他代码省略</span><br><span class="line">	</span><br><span class="line">    /** 自定义后缀 */</span><br><span class="line">    private String customSuffixStr = &quot;Service&quot;;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">     * 判断自定义后缀是element元素</span><br><span class="line">     */</span><br><span class="line">    @Override</span><br><span class="line">    protected boolean isMessageElement(Element element) &#123;</span><br><span class="line">        if (super.isMessageElement(element)) &#123;</span><br><span class="line">            String elementName = getElementName(element);</span><br><span class="line">            Assert.hasText(elementName, &quot;Element has no name&quot;);</span><br><span class="line">            return elementName.endsWith(getRequestSuffix()) || elementName.endsWith(getResponseSuffix()) ||</span><br><span class="line">                    elementName.endsWith(getFaultSuffix()) || elementName.endsWith(getCustomSuffixStr());</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	//其他代码省略</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -217,14 +218,20 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">public class MyWsdl11Definition  implements Wsdl11Definition, InitializingBean &#123;</span><br><span class="line"></span><br><span class="line">	//其他代码省略</span><br><span class="line">	</span><br><span class="line">    /** 添加定义MessagesProvider */</span><br><span class="line">    private final MySuffixBasedMessagesProvider messagesProvider = new MySuffixBasedMessagesProvider();</span><br><span class="line">    /** 添加定义PortTypesProvider */</span><br><span class="line">    private final MySuffixBasedPortTypesProvider portTypesProvider = new MySuffixBasedPortTypesProvider();</span><br><span class="line">	</span><br><span class="line">	//其他代码省略</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="3-web-service-配置"><a href="#3-web-service-配置" class="headerlink" title="3.web service 配置"></a>3.web service 配置</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">@EnableWs</span><br><span class="line">@Configuration</span><br><span class="line">public class WebServiceConfig extends WsConfigurerAdapter &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 把XSD schemas转换成wsdl</span><br><span class="line">     */</span><br><span class="line">    @Bean(name = &quot;testService&quot;)</span><br><span class="line">    public MyWsdl11Definition mMyWsdl11Definition(XsdSchema testServiceSchema) &#123;</span><br><span class="line">        MyWsdl11Definition wsdl11Definition = new MyWsdl11Definition();</span><br><span class="line">        wsdl11Definition.setPortTypeName(&quot;TestService&quot;);</span><br><span class="line">        wsdl11Definition.setLocationUri(&quot;/ws&quot;);</span><br><span class="line">        wsdl11Definition.setTargetNamespace(&quot;http://webservice.leeves.com/ws&quot;);</span><br><span class="line">        wsdl11Definition.setSchema(testServiceSchema);</span><br><span class="line">        return wsdl11Definition;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    /**</span><br><span class="line">     * 创建test的XsdSchema实例</span><br><span class="line">     */</span><br><span class="line">    @Bean</span><br><span class="line">    public XsdSchema testServiceSchema() &#123;</span><br><span class="line">        return new SimpleXsdSchema(new ClassPathResource(&quot;schema/testService.xsd&quot;));</span><br><span class="line">    &#125;	</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><h2 id="使用soapui测试-1"><a href="#使用soapui测试-1" class="headerlink" title="使用soapui测试"></a>使用soapui测试</h2>完美通过，^.^，下次再带来spring boot ws client客户端<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/wsservicetestService_soapui.png" alt="enter description here"></li>
+<li><h2 id="使用soapui测试-1"><a href="#使用soapui测试-1" class="headerlink" title="使用soapui测试"></a>使用soapui测试</h2>完美通过，^.^，下次再带来spring boot ws client客户端<br><img src="http://lixin.piaozu.com.cn/wsservicetestService_soapui.png" alt="enter description here"></li>
 </ul>
 <p>忘了忘了，补上代码地址：<a href="https://github.com/leevsee/ws-new-demo" target="_blank" rel="noopener">https://github.com/leevsee/ws-new-demo</a></p>
 
                 <hr>
                 
                 <!-- 多说 Share start -->
-                <div class="ds-share" style="text-align: right" data-thread-key="2018/07/18/spring-boot-web-service之ws（一）/" data-title="spring-boot-web-service之ws（一）" data-url="https://leevsee.github.io/2018/07/18/spring-boot-web-service之ws（一）/" data-images="" data-content="题外话：ε=(´ο｀*)))日渐消瘦，现在感觉写博客的心情也少了些。嘛，最近看了个视频深有感触... | Leeves&#39;s blog ">
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2018/07/18/spring-boot-web-service之ws（一）/"
+                     data-title="spring-boot-web-service之ws（一）"
+                     data-url="https://leevsee.github.io/2018/07/18/spring-boot-web-service之ws（一）/"
+                     data-images=""
+                     data-content="题外话：ε=(´ο｀*)))日渐消瘦，现在感觉写博客的心情也少了些。嘛，最近看了个视频深有感触... | Leeves&#39;s blog ">
                     <div class="ds-share-inline">
                         <ul class="ds-share-icons-16">
                             <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -243,12 +250,14 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2018/07/20/spring-boot-web-service之jws-cxf（二）/" data-toggle="tooltip" data-placement="top" title="spring-boot-web-service之jws+cxf（二）">&larr; Previous Post</a>
+                        <a href="/2018/07/20/spring-boot-web-service之jws-cxf（二）/" data-toggle="tooltip" data-placement="top"
+                           title="spring-boot-web-service之jws+cxf（二）">&larr; Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2017/05/19/Kotlin入门学习笔记（一）/" data-toggle="tooltip" data-placement="top" title="Kotlin入门学习笔记（一）">Next Post &rarr;</a>
+                        <a href="/2017/05/19/Kotlin入门学习笔记（一）/" data-toggle="tooltip" data-placement="top"
+                           title="Kotlin入门学习笔记（一）">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -256,7 +265,10 @@
                 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="2018/07/18/spring-boot-web-service之ws（一）/" data-title="spring-boot-web-service之ws（一）" data-url="https://leevsee.github.io/2018/07/18/spring-boot-web-service之ws（一）/">
+                    <div class="ds-thread"
+                         data-thread-key="2018/07/18/spring-boot-web-service之ws（一）/"
+                         data-title="spring-boot-web-service之ws（一）"
+                         data-url="https://leevsee.github.io/2018/07/18/spring-boot-web-service之ws（一）/">
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -371,7 +383,7 @@
 
                 
                     <li>
-                        <a target="_blank" href="https://github.com/Leevsee">
+                        <a target="_blank"  href="https://github.com/Leevsee">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -459,7 +471,7 @@
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <!--wechat title img-->
-<img class="wechat-title-img" src="http://7xz8pr.com1.z1.glb.clouddn.com/icon1.jpg">
+<img class="wechat-title-img" src="http://lixin.piaozu.com.cn/icon1.jpg">
 </body>
 
 </html>

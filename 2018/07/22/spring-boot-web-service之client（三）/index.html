@@ -2,7 +2,7 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="baidu-site-verification" content="Xijgc2YO5y">
@@ -60,8 +60,8 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
-" data-ishome="false">
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -143,13 +143,14 @@
 <!--only post-->
 
 
-<img class="wechat-title-img" src="http://7xz8pr.com1.z1.glb.clouddn.com/postPicture.jpg">
+<img class="wechat-title-img"
+     src="http://lixin.piaozu.com.cn/postPicture.jpg">
 
 
 <style>
     
     header.intro-header {
-        background-image: url('http://7xz8pr.com1.z1.glb.clouddn.com/postPicture.jpg')
+        background-image: url('http://lixin.piaozu.com.cn/postPicture.jpg')
     }
 
     
@@ -194,22 +195,22 @@
 <h2 id="1-添加依赖"><a href="#1-添加依赖" class="headerlink" title="1.添加依赖"></a>1.添加依赖</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;spring-boot-starter-web-services&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="2-根据WSDL生产JavaCode"><a href="#2-根据WSDL生产JavaCode" class="headerlink" title="2.根据WSDL生产JavaCode"></a>2.根据WSDL生产JavaCode</h2><p>这里其实可以把服务端的<code>JavaCode</code>复制过来，当然也可以自己生成。<br>首先配置<code>maven jaxb</code>，用来生成wsdl的<code>Java Code</code><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;build&gt;</span><br><span class="line">	&lt;plugins&gt;</span><br><span class="line">		&lt;plugin&gt;</span><br><span class="line">			&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">		&lt;/plugin&gt;</span><br><span class="line">		&lt;plugin&gt;</span><br><span class="line">			&lt;groupId&gt;org.jvnet.jaxb2.maven2&lt;/groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;maven-jaxb2-plugin&lt;/artifactId&gt;</span><br><span class="line">			&lt;version&gt;0.14.0&lt;/version&gt;</span><br><span class="line">			&lt;executions&gt;</span><br><span class="line">				&lt;execution&gt;</span><br><span class="line">					&lt;goals&gt;</span><br><span class="line">						&lt;goal&gt;generate&lt;/goal&gt;</span><br><span class="line">					&lt;/goals&gt;</span><br><span class="line">				&lt;/execution&gt;</span><br><span class="line">			&lt;/executions&gt;</span><br><span class="line">			&lt;configuration&gt;</span><br><span class="line">				&lt;schemaLanguage&gt;WSDL&lt;/schemaLanguage&gt;</span><br><span class="line">				&lt;generatePackage&gt;com.leeves.wsrnewdemo.ws.leeves&lt;/generatePackage&gt;</span><br><span class="line">				&lt;generateDirectory&gt;$&#123;basedir&#125;/src/main/java&lt;/generateDirectory&gt;</span><br><span class="line">				&lt;schemas&gt;</span><br><span class="line">					&lt;schema&gt;</span><br><span class="line">						&lt;!--&lt;fileset&gt;--&gt;</span><br><span class="line">						&lt;!--&amp;lt;!&amp;ndash; Defaults to schemaDirectory. &amp;ndash;&amp;gt;--&gt;</span><br><span class="line">						&lt;!--&lt;directory&gt;$&#123;basedir&#125;/src/main/resources/schemas&lt;/directory&gt;--&gt;</span><br><span class="line">						&lt;!--&amp;lt;!&amp;ndash; Defaults to schemaIncludes. &amp;ndash;&amp;gt;--&gt;</span><br><span class="line">						&lt;!--&lt;includes&gt;--&gt;</span><br><span class="line">						&lt;!--&lt;include&gt;*.wsdl&lt;/include&gt;--&gt;</span><br><span class="line">						&lt;!--&lt;/includes&gt;--&gt;</span><br><span class="line">						&lt;!--&amp;lt;!&amp;ndash; Defaults to schemaIncludes &amp;ndash;&amp;gt;--&gt;</span><br><span class="line">						&lt;!--&amp;lt;!&amp;ndash;&lt;excludes&gt;&amp;ndash;&amp;gt;--&gt;</span><br><span class="line">						&lt;!--&amp;lt;!&amp;ndash;&lt;exclude&gt;*.xs&lt;/exclude&gt;&amp;ndash;&amp;gt;--&gt;</span><br><span class="line">						&lt;!--&amp;lt;!&amp;ndash;&lt;/excludes&gt;&amp;ndash;&amp;gt;--&gt;</span><br><span class="line">						&lt;!--&lt;/fileset&gt;--&gt;</span><br><span class="line">						&lt;url&gt;http://localhost:7007/ws/leevesService.wsdl&lt;/url&gt;</span><br><span class="line">					&lt;/schema&gt;</span><br><span class="line">				&lt;/schemas&gt;</span><br><span class="line">			&lt;/configuration&gt;</span><br><span class="line">		&lt;/plugin&gt;</span><br><span class="line">	&lt;/plugins&gt;</span><br><span class="line">&lt;/build&gt;</span><br></pre></td></tr></table></figure></p>
 <p>PS：这里我是根据url地址生成，也可以先把wsdl保存下来，然后根据文件生成  </p>
-<p>然后<code>mvn install</code>生成即可。<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/ws_r_mvn_install.png" alt="enter description here"></p>
-<p>生成后的代码如下：<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/ws_r_leeves_test.png" alt="enter description here"></p>
+<p>然后<code>mvn install</code>生成即可。<br><img src="http://lixin.piaozu.com.cn/ws_r_mvn_install.png" alt="enter description here"></p>
+<p>生成后的代码如下：<br><img src="http://lixin.piaozu.com.cn/ws_r_leeves_test.png" alt="enter description here"></p>
 <h2 id="3-ws客户端配置"><a href="#3-ws客户端配置" class="headerlink" title="3.ws客户端配置"></a>3.ws客户端配置</h2><p>编写发送方法：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class WSClient extends WebServiceGatewaySupport &#123;</span><br><span class="line"></span><br><span class="line">    public LeevesServiceResponse sendToLeevesService(String reqMsg) &#123;</span><br><span class="line">        LeevesServiceRequest request = new LeevesServiceRequest();</span><br><span class="line">        request.setReqMsg(reqMsg);</span><br><span class="line">        return (LeevesServiceResponse) getWebServiceTemplate().marshalSendAndReceive(</span><br><span class="line">                &quot;http://localhost:7007/ws/leevesService.wsdl&quot;, request);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public TestServiceResponse sendToTestService(String reqMsg) &#123;</span><br><span class="line">        TestService request = new TestService();</span><br><span class="line">        request.setReqMsg(reqMsg);</span><br><span class="line">        return (TestServiceResponse) getWebServiceTemplate().marshalSendAndReceive(</span><br><span class="line">                &quot;http://localhost:7007/ws/testService.wsdl&quot;, request);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>添加解析路径和url，并放到spring容器中：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">public class WSConfig &#123;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public Jaxb2Marshaller leevesMarshaller() &#123;</span><br><span class="line">        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();</span><br><span class="line">        marshaller.setContextPath(&quot;com.leeves.wsrnewdemo.ws.leeves&quot;);</span><br><span class="line">        return marshaller;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public Jaxb2Marshaller testMarshaller() &#123;</span><br><span class="line">        Jaxb2Marshaller marshaller = new Jaxb2Marshaller();</span><br><span class="line">        marshaller.setContextPath(&quot;com.leeves.wsrnewdemo.ws.test&quot;);</span><br><span class="line">        return marshaller;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public WSClient leevesWSClient(Jaxb2Marshaller leevesMarshaller) &#123;</span><br><span class="line">        WSClient client = new WSClient();</span><br><span class="line">        client.setDefaultUri(&quot;http://localhost:7007/ws/leevesService.wsdl&quot;);</span><br><span class="line">        client.setMarshaller(leevesMarshaller);</span><br><span class="line">        client.setUnmarshaller(leevesMarshaller);</span><br><span class="line">        return client;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    public WSClient testWSClient(Jaxb2Marshaller testMarshaller) &#123;</span><br><span class="line">        WSClient client = new WSClient();</span><br><span class="line">        client.setDefaultUri(&quot;http://localhost:7007/ws/testService.wsdl&quot;);</span><br><span class="line">        client.setMarshaller(testMarshaller);</span><br><span class="line">        client.setUnmarshaller(testMarshaller);</span><br><span class="line">        return client;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="4-测试通过"><a href="#4-测试通过" class="headerlink" title="4.测试通过"></a>4.测试通过</h2><p>噔噔，完美通过<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/ws_r_test.png" alt="enter description here"></p>
+<h2 id="4-测试通过"><a href="#4-测试通过" class="headerlink" title="4.测试通过"></a>4.测试通过</h2><p>噔噔，完美通过<br><img src="http://lixin.piaozu.com.cn/ws_r_test.png" alt="enter description here"></p>
 <p><br><br><br><br><br></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><br></h2><p><strong>接下来是用jdk自带的生成客户端</strong></p>
-<h2 id="1-添加依赖-1"><a href="#1-添加依赖-1" class="headerlink" title="1.添加依赖"></a>1.添加依赖</h2><p><img src="http://7xz8pr.com1.z1.glb.clouddn.com/ws_r_no.jpg" alt="enter description here"><br>不存在的。。本身jdk自带要什么鬼依赖</p>
+<h2 id><a href="#" class="headerlink" title></a><br></h2><p><strong>接下来是用jdk自带的生成客户端</strong></p>
+<h2 id="1-添加依赖-1"><a href="#1-添加依赖-1" class="headerlink" title="1.添加依赖"></a>1.添加依赖</h2><p><img src="http://lixin.piaozu.com.cn/ws_r_no.jpg" alt="enter description here"><br>不存在的。。本身jdk自带要什么鬼依赖</p>
 <h2 id="2-生成wsdl客户端"><a href="#2-生成wsdl客户端" class="headerlink" title="2.生成wsdl客户端"></a>2.生成wsdl客户端</h2><p>在F盘创建wsdl文件夹，然后命令行输入：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wsimport -s F:\wsdl -p com.leeves.wsjwsrnewdemo.webservice http://localhost:7000/jws/leevesService?wsdl</span><br><span class="line">// F:\wsdl	生成的到磁盘地址</span><br><span class="line">// com.leeves.wsjwsrnewdemo.webservice	包路径</span><br><span class="line">// http://localhost:7007/ws/leevesService.wsdl	wsdl地址</span><br></pre></td></tr></table></figure>
-<p><img src="http://7xz8pr.com1.z1.glb.clouddn.com/ws_r_wsimport.png" alt="enter description here"></p>
+<p><img src="http://lixin.piaozu.com.cn/ws_r_wsimport.png" alt="enter description here"></p>
 <p>把生成的文件放到项目中</p>
 <h2 id="3-ws客户端配置-1"><a href="#3-ws客户端配置-1" class="headerlink" title="3.ws客户端配置"></a>3.ws客户端配置</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class WSClient &#123;</span><br><span class="line"></span><br><span class="line">    private static final String CONNECTION_TIMEOUT = &quot;javax.xml.hisws.client.connectionTimeout&quot;;</span><br><span class="line"></span><br><span class="line">    private static final String RECEIVE_TIMEOUT = &quot;javax.xml.hisws.client.receiveTimeout&quot;;</span><br><span class="line">    //5秒</span><br><span class="line">    private static long timeOut = 5 * 1000;</span><br><span class="line"></span><br><span class="line">    private static final String WS_URL = &quot;http://172.16.11.32:7000/jws/leevesService?wsdl&quot;;</span><br><span class="line"></span><br><span class="line">    private static LeevesService leevesService = null;</span><br><span class="line"></span><br><span class="line">    public static String getInstance(String reqMsg) &#123;</span><br><span class="line"></span><br><span class="line">        if (leevesService == null) &#123;</span><br><span class="line">            LeevesServiceImplService leevesServiceImplService;</span><br><span class="line">            try &#123;</span><br><span class="line">                leevesServiceImplService = new LeevesServiceImplService(new URL(WS_URL));</span><br><span class="line">                leevesService = leevesServiceImplService.getLeevesServiceImplPort();</span><br><span class="line">            &#125; catch (MalformedURLException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            Assert.notNull(leevesService, &quot;web service client instance must not null!&quot;);</span><br><span class="line">            ((BindingProvider) leevesService).getRequestContext().put(CONNECTION_TIMEOUT, timeOut);</span><br><span class="line">            ((BindingProvider) leevesService).getRequestContext().put(RECEIVE_TIMEOUT, timeOut);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return leevesService.leevesService(reqMsg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h2><p>直接调用，就有数据鸟<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/ws_r_jws_test.png" alt="enter description here"></p>
+<h2 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h2><p>直接调用，就有数据鸟<br><img src="http://lixin.piaozu.com.cn/ws_r_jws_test.png" alt="enter description here"></p>
 <hr>
 <p>最后，总结一下，客户端来说还是用jdk生成的客户端方便。</p>
 <p>附上两个代码地址：<br><a href="https://github.com/leevsee/ws-r-new-demo" target="_blank" rel="noopener">https://github.com/leevsee/ws-r-new-demo</a><br><a href="https://github.com/leevsee/ws-jws-r-new-demo" target="_blank" rel="noopener">https://github.com/leevsee/ws-jws-r-new-demo</a></p>
@@ -217,7 +218,13 @@
                 <hr>
                 
                 <!-- 多说 Share start -->
-                <div class="ds-share" style="text-align: right" data-thread-key="2018/07/22/spring-boot-web-service之client（三）/" data-title="spring boot web service之client（三）" data-url="https://leevsee.github.io/2018/07/22/spring-boot-web-service之client（三）/" data-images="" data-content="喵喵喵，web service目前就差客户端了。那我就不分篇，spring的客户端和java客... | Leeves&#39;s blog ">
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2018/07/22/spring-boot-web-service之client（三）/"
+                     data-title="spring boot web service之client（三）"
+                     data-url="https://leevsee.github.io/2018/07/22/spring-boot-web-service之client（三）/"
+                     data-images=""
+                     data-content="喵喵喵，web service目前就差客户端了。那我就不分篇，spring的客户端和java客... | Leeves&#39;s blog ">
                     <div class="ds-share-inline">
                         <ul class="ds-share-icons-16">
                             <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -236,12 +243,14 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2018/07/30/spring-boot-mybatis-dynamic-datasource/" data-toggle="tooltip" data-placement="top" title="spring boot mybatis dynamic datasource">&larr; Previous Post</a>
+                        <a href="/2018/07/30/spring-boot-mybatis-dynamic-datasource/" data-toggle="tooltip" data-placement="top"
+                           title="spring boot mybatis dynamic datasource">&larr; Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2018/07/20/spring-boot-web-service之jws-cxf（二）/" data-toggle="tooltip" data-placement="top" title="spring-boot-web-service之jws+cxf（二）">Next Post &rarr;</a>
+                        <a href="/2018/07/20/spring-boot-web-service之jws-cxf（二）/" data-toggle="tooltip" data-placement="top"
+                           title="spring-boot-web-service之jws+cxf（二）">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -249,7 +258,10 @@
                 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="2018/07/22/spring-boot-web-service之client（三）/" data-title="spring boot web service之client（三）" data-url="https://leevsee.github.io/2018/07/22/spring-boot-web-service之client（三）/">
+                    <div class="ds-thread"
+                         data-thread-key="2018/07/22/spring-boot-web-service之client（三）/"
+                         data-title="spring boot web service之client（三）"
+                         data-url="https://leevsee.github.io/2018/07/22/spring-boot-web-service之client（三）/">
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -261,7 +273,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-添加依赖"><span class="toc-text">1.添加依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-根据WSDL生产JavaCode"><span class="toc-text">2.根据WSDL生产JavaCode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ws客户端配置"><span class="toc-text">3.ws客户端配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-测试通过"><span class="toc-text">4.测试通过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-添加依赖-1"><span class="toc-text">1.添加依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-生成wsdl客户端"><span class="toc-text">2.生成wsdl客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ws客户端配置-1"><span class="toc-text">3.ws客户端配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-测试"><span class="toc-text">4.测试</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-添加依赖"><span class="toc-text">1.添加依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-根据WSDL生产JavaCode"><span class="toc-text">2.根据WSDL生产JavaCode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ws客户端配置"><span class="toc-text">3.ws客户端配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-测试通过"><span class="toc-text">4.测试通过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#null"><span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-添加依赖-1"><span class="toc-text">1.添加依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-生成wsdl客户端"><span class="toc-text">2.生成wsdl客户端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-ws客户端配置-1"><span class="toc-text">3.ws客户端配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-测试"><span class="toc-text">4.测试</span></a></li></ol>
                 </div>
             </div>
         </div>
@@ -364,7 +376,7 @@
 
                 
                     <li>
-                        <a target="_blank" href="https://github.com/Leevsee">
+                        <a target="_blank"  href="https://github.com/Leevsee">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -452,7 +464,7 @@
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <!--wechat title img-->
-<img class="wechat-title-img" src="http://7xz8pr.com1.z1.glb.clouddn.com/icon1.jpg">
+<img class="wechat-title-img" src="http://lixin.piaozu.com.cn/icon1.jpg">
 </body>
 
 </html>

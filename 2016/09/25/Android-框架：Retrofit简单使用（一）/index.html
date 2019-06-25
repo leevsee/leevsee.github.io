@@ -2,7 +2,7 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="baidu-site-verification" content="Xijgc2YO5y">
@@ -60,8 +60,8 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
-" data-ishome="false">
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -143,13 +143,14 @@
 <!--only post-->
 
 
-<img class="wechat-title-img" src="http://7xz8pr.com1.z1.glb.clouddn.com/postPicture.jpg">
+<img class="wechat-title-img"
+     src="http://lixin.piaozu.com.cn/postPicture.jpg">
 
 
 <style>
     
     header.intro-header {
-        background-image: url('http://7xz8pr.com1.z1.glb.clouddn.com/postPicture.jpg')
+        background-image: url('http://lixin.piaozu.com.cn/postPicture.jpg')
     }
 
     
@@ -188,7 +189,7 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>最近在学习Retrofit网络框架，首先是请求API，已经Json处理，以下是学习总结：<br><br>　　本次的demo是使用百度IP地址查询API，因为百度API需要在<code>header</code>传入<code>apikey</code>这个参数<br><br>　　<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/RetrofitDemo2.jpg" alt="API参数"><br><br><br>　　请求后返回的结果：</p>
+                <p>最近在学习Retrofit网络框架，首先是请求API，已经Json处理，以下是学习总结：<br><br>　　本次的demo是使用百度IP地址查询API，因为百度API需要在<code>header</code>传入<code>apikey</code>这个参数<br><br>　　<br><img src="http://lixin.piaozu.com.cn/RetrofitDemo2.jpg" alt="API参数"><br><br><br>　　请求后返回的结果：</p>
 <pre><code>{
     &quot;errNum&quot;: 0,
     &quot;errMsg&quot;: &quot;success&quot;,
@@ -203,7 +204,6 @@
 }
 </code></pre><p>　　自己实践的话可以去看百度IP地址查询的<a href="http://apistore.baidu.com/apiworks/servicedetail/2422.html" target="_blank" rel="noopener">API</a>，下面一步一步来对比上代码！<br>
 　　</p>
-<p>　　</p>
 <h3 id="1-根据Retrofit官方文档首先写一个业务接口"><a href="#1-根据Retrofit官方文档首先写一个业务接口" class="headerlink" title="1.根据Retrofit官方文档首先写一个业务接口"></a>1.根据<a href="http://square.github.io/retrofit/" target="_blank" rel="noopener">Retrofit官方文档</a>首先写一个业务接口</h3><pre><code>public interface GitHubService {   
     @GET(&quot;users/{user}/repos&quot;)   
     Call&lt;List&lt;Repo&gt;&gt; listRepos(@Path(&quot;user&quot;) String user); 
@@ -248,6 +248,7 @@ call.enqueue(new Callback&lt;String&gt;() {
                  }
     })
 </code></pre><p><br></p>
+<p>​    </p>
 <ul>
 <li><p>好啦，根据官方文档，对比着来写，应该都明白了吧。下面放出整个代码:<br><br><br></p>
 <pre><code>@Override
@@ -296,7 +297,13 @@ public interface IPQueryService {
                 <hr>
                 
                 <!-- 多说 Share start -->
-                <div class="ds-share" style="text-align: right" data-thread-key="2016/09/25/Android-框架：Retrofit简单使用（一）/" data-title="Android 框架：Retrofit简单使用（一）" data-url="https://leevsee.github.io/2016/09/25/Android-框架：Retrofit简单使用（一）/" data-images="" data-content="最近在学习Retrofit网络框架，首先是请求API，已经Json处理，以下是学习总结：　　本... | Leeves&#39;s blog ">
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2016/09/25/Android-框架：Retrofit简单使用（一）/"
+                     data-title="Android 框架：Retrofit简单使用（一）"
+                     data-url="https://leevsee.github.io/2016/09/25/Android-框架：Retrofit简单使用（一）/"
+                     data-images=""
+                     data-content="最近在学习Retrofit网络框架，首先是请求API，已经Json处理，以下是学习总结：　　本... | Leeves&#39;s blog ">
                     <div class="ds-share-inline">
                         <ul class="ds-share-icons-16">
                             <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -315,12 +322,14 @@ public interface IPQueryService {
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2016/09/26/Android-框架：Retrofit简单使用（二）/" data-toggle="tooltip" data-placement="top" title="Android-框架：Retrofit简单使用（二）">&larr; Previous Post</a>
+                        <a href="/2016/09/26/Android-框架：Retrofit简单使用（二）/" data-toggle="tooltip" data-placement="top"
+                           title="Android-框架：Retrofit简单使用（二）">&larr; Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2016/09/23/Android-demo-图片选择器，加入QQ相册选择风格——-by-XiaoLv-Tang/" data-toggle="tooltip" data-placement="top" title="Android demo:图片选择器，加入QQ相册选择风格——(by XiaoLv Tang)">Next Post &rarr;</a>
+                        <a href="/2016/09/23/Android-demo-图片选择器，加入QQ相册选择风格——-by-XiaoLv-Tang/" data-toggle="tooltip" data-placement="top"
+                           title="Android demo:图片选择器，加入QQ相册选择风格——(by XiaoLv Tang)">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -328,7 +337,10 @@ public interface IPQueryService {
                 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="2016/09/25/Android-框架：Retrofit简单使用（一）/" data-title="Android 框架：Retrofit简单使用（一）" data-url="https://leevsee.github.io/2016/09/25/Android-框架：Retrofit简单使用（一）/">
+                    <div class="ds-thread"
+                         data-thread-key="2016/09/25/Android-框架：Retrofit简单使用（一）/"
+                         data-title="Android 框架：Retrofit简单使用（一）"
+                         data-url="https://leevsee.github.io/2016/09/25/Android-框架：Retrofit简单使用（一）/">
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -443,7 +455,7 @@ public interface IPQueryService {
 
                 
                     <li>
-                        <a target="_blank" href="https://github.com/Leevsee">
+                        <a target="_blank"  href="https://github.com/Leevsee">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -531,7 +543,7 @@ public interface IPQueryService {
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <!--wechat title img-->
-<img class="wechat-title-img" src="http://7xz8pr.com1.z1.glb.clouddn.com/icon1.jpg">
+<img class="wechat-title-img" src="http://lixin.piaozu.com.cn/icon1.jpg">
 </body>
 
 </html>

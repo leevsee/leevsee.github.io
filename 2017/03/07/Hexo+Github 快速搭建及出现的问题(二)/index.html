@@ -2,7 +2,7 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="baidu-site-verification" content="Xijgc2YO5y">
@@ -60,8 +60,8 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
-" data-ishome="false">
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -143,13 +143,14 @@
 <!--only post-->
 
 
-<img class="wechat-title-img" src="http://7xz8pr.com1.z1.glb.clouddn.com/postPicture.jpg">
+<img class="wechat-title-img"
+     src="http://lixin.piaozu.com.cn/postPicture.jpg">
 
 
 <style>
     
     header.intro-header {
-        background-image: url('http://7xz8pr.com1.z1.glb.clouddn.com/postPicture.jpg')
+        background-image: url('http://lixin.piaozu.com.cn/postPicture.jpg')
     }
 
     
@@ -199,15 +200,15 @@ Enter file in which to save the key (/Users/your_user_directory/.ssh/id_rsa): &l
 Enter passphrase (empty for no passphrase): &lt;输入加密串&gt;
 Enter same passphrase again: &lt;再次输入加密串&gt;
 </code></pre><p>PS：在回车中会提示你输入一个密码，这个密码会在你提交项目时使用，如果为空的话提交项目时则不用输入。这个设置是防止别人往你的项目里提交内容。</p>
-<h2 id="3-添加SSH-Key到Github"><a href="#3-添加SSH-Key到Github" class="headerlink" title="3.添加SSH Key到Github"></a>3.添加SSH Key到Github</h2><p>win8系统以下：打开本地<code>C:\Documents and Settings\Administrator.ssh\id_rsa.pub</code>文件。<br>win10系统：打开本地<code>C:\Users\你的当前用户\.ssh\id_rsa.pub</code>文件。<br><br>　　登陆Github，点击的你头像——Settings——SSH and GPG keys——New SSH key。填写Title的名称随便填，然后把<code>id_rsa.pub</code>文件的key复制进去保存。<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/ssh_add_key.png" alt="ssh_add_key"></p>
+<h2 id="3-添加SSH-Key到Github"><a href="#3-添加SSH-Key到Github" class="headerlink" title="3.添加SSH Key到Github"></a>3.添加SSH Key到Github</h2><p>win8系统以下：打开本地<code>C:\Documents and Settings\Administrator.ssh\id_rsa.pub</code>文件。<br>win10系统：打开本地<code>C:\Users\你的当前用户\.ssh\id_rsa.pub</code>文件。<br><br>　　登陆Github，点击的你头像——Settings——SSH and GPG keys——New SSH key。填写Title的名称随便填，然后把<code>id_rsa.pub</code>文件的key复制进去保存。<br><img src="http://lixin.piaozu.com.cn/ssh_add_key.png" alt="ssh_add_key"></p>
 <p><br>接下来测试一下这个ssh key是否能连通：在命令行输入：</p>
 <pre><code>$ ssh -T git@github.com
-</code></pre><p>出现successfully就表示连接成功了<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/ssh_test.png" alt="ssh_test"><br><br></p>
-<h2 id="4-创建Github仓库并提交"><a href="#4-创建Github仓库并提交" class="headerlink" title="4.创建Github仓库并提交"></a>4.创建Github仓库并提交</h2><p>　　我们Github，然后新建一个仓库，名称必须是：XXXX.github.io。其中XXXX是你自己的名字，以后输入这个就是首页了。<br>　　打开刚才你创建Github仓库，复制这个地址（要把https变成ssh哦）。<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/ssh.png" alt="ssh_url"><br><br>在hexo文件下，打开<code>_config.yml</code>文件，找到deploy—repo那里：把地址粘贴进去。<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/hexo_deploy.png" alt="hexo_deploy"></p>
+</code></pre><p>出现successfully就表示连接成功了<br><img src="http://lixin.piaozu.com.cn/ssh_test.png" alt="ssh_test"><br><br></p>
+<h2 id="4-创建Github仓库并提交"><a href="#4-创建Github仓库并提交" class="headerlink" title="4.创建Github仓库并提交"></a>4.创建Github仓库并提交</h2><p>　　我们Github，然后新建一个仓库，名称必须是：XXXX.github.io。其中XXXX是你自己的名字，以后输入这个就是首页了。<br>　　打开刚才你创建Github仓库，复制这个地址（要把https变成ssh哦）。<br><img src="http://lixin.piaozu.com.cn/ssh.png" alt="ssh_url"><br><br>在hexo文件下，打开<code>_config.yml</code>文件，找到deploy—repo那里：把地址粘贴进去。<br><img src="http://lixin.piaozu.com.cn/hexo_deploy.png" alt="hexo_deploy"></p>
 <p><br>这时候，我们在命令行，输入：</p>
 <pre><code>$ hexo clean
 $ hexo d -g
-</code></pre><p>　　第一条命令是安装hexo<br>　　第二条命令是初始化生成静态文件并提交<br><br>然后出现一堆东西，到最后，有<code>INFO  Deploy done: git</code>的提示，就表示完成啦~(≧▽≦)/~<br><img src="http://7xz8pr.com1.z1.glb.clouddn.com/deploy_done.png" alt="deploy_done"></p>
+</code></pre><p>　　第一条命令是安装hexo<br>　　第二条命令是初始化生成静态文件并提交<br><br>然后出现一堆东西，到最后，有<code>INFO  Deploy done: git</code>的提示，就表示完成啦~(≧▽≦)/~<br><img src="http://lixin.piaozu.com.cn/deploy_done.png" alt="deploy_done"></p>
 <p>然后你直接输入XXXX.github.io，是不是就看到网站啦，很神奇是不是，赶紧去试试吧。<br><br></p>
 <ul>
 <li>不过我知道肯定会出现各种问题，如有问题留言我看得到的话就回，(<em>^__^</em>)</li>
@@ -216,7 +217,13 @@ $ hexo d -g
                 <hr>
                 
                 <!-- 多说 Share start -->
-                <div class="ds-share" style="text-align: right" data-thread-key="2017/03/07/Hexo+Github 快速搭建及出现的问题(二)/" data-title="Hexo+Github 快速搭建及出现的问题(二)" data-url="https://leevsee.github.io/2017/03/07/Hexo+Github 快速搭建及出现的问题(二)/" data-images="" data-content="　　/(ㄒoㄒ)/真的是太久没更新了，主要是因为我的台式机电脑主板bios更新后，不支持es的... | Leeves&#39;s blog ">
+                <div class="ds-share"
+                     style="text-align: right"
+                     data-thread-key="2017/03/07/Hexo+Github 快速搭建及出现的问题(二)/"
+                     data-title="Hexo+Github 快速搭建及出现的问题(二)"
+                     data-url="https://leevsee.github.io/2017/03/07/Hexo+Github 快速搭建及出现的问题(二)/"
+                     data-images=""
+                     data-content="　　/(ㄒoㄒ)/真的是太久没更新了，主要是因为我的台式机电脑主板bios更新后，不支持es的... | Leeves&#39;s blog ">
                     <div class="ds-share-inline">
                         <ul class="ds-share-icons-16">
                             <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -235,12 +242,14 @@ $ hexo d -g
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2017/05/19/Kotlin入门学习笔记（一）/" data-toggle="tooltip" data-placement="top" title="Kotlin入门学习笔记（一）">&larr; Previous Post</a>
+                        <a href="/2017/05/19/Kotlin入门学习笔记（一）/" data-toggle="tooltip" data-placement="top"
+                           title="Kotlin入门学习笔记（一）">&larr; Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2016/11/02/Genymotion-镜像-6-0-root权限问题/" data-toggle="tooltip" data-placement="top" title="Genymotion 镜像 6.0 root权限问题">Next Post &rarr;</a>
+                        <a href="/2016/11/02/Genymotion-镜像-6-0-root权限问题/" data-toggle="tooltip" data-placement="top"
+                           title="Genymotion 镜像 6.0 root权限问题">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -248,7 +257,10 @@ $ hexo d -g
                 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="2017/03/07/Hexo+Github 快速搭建及出现的问题(二)/" data-title="Hexo+Github 快速搭建及出现的问题(二)" data-url="https://leevsee.github.io/2017/03/07/Hexo+Github 快速搭建及出现的问题(二)/">
+                    <div class="ds-thread"
+                         data-thread-key="2017/03/07/Hexo+Github 快速搭建及出现的问题(二)/"
+                         data-title="Hexo+Github 快速搭建及出现的问题(二)"
+                         data-url="https://leevsee.github.io/2017/03/07/Hexo+Github 快速搭建及出现的问题(二)/">
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -363,7 +375,7 @@ $ hexo d -g
 
                 
                     <li>
-                        <a target="_blank" href="https://github.com/Leevsee">
+                        <a target="_blank"  href="https://github.com/Leevsee">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -451,7 +463,7 @@ $ hexo d -g
 <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <!--wechat title img-->
-<img class="wechat-title-img" src="http://7xz8pr.com1.z1.glb.clouddn.com/icon1.jpg">
+<img class="wechat-title-img" src="http://lixin.piaozu.com.cn/icon1.jpg">
 </body>
 
 </html>
